@@ -3,53 +3,53 @@ var join = require('../')
 var test = require('tape')
 
 test('can join on one key', function(t) {
-  var expected_result = []
-    , array_of_data = []
+  var expectedResult = []
+    , arrayOfData = []
     , result
 
   t.plan(1)
 
-  array_of_data.push({
+  arrayOfData.push({
       'a': 'sunshine'
     , 'b': 'soldier'
   })
 
-  array_of_data.push({
+  arrayOfData.push({
       'a': 'sunshine'
     , 'b': 'culture'
   })
 
-  array_of_data.push({
+  arrayOfData.push({
       'a': 'chaos'
     , 'b': 'non-comformity'
   })
 
-  array_of_data.push({
+  arrayOfData.push({
       'a': 'chaos'
     , 'b': 'conditioning'
   })
 
-  result = join(array_of_data, ['a'])
+  result = join(arrayOfData, ['a'])
 
-  expected_result = []
+  expectedResult = []
 
-  expected_result.push({
+  expectedResult.push({
       'a': 'sunshine'
     , 'b': ['soldier', 'culture']
   })
 
-  expected_result.push({
+  expectedResult.push({
       'a': 'chaos'
     , 'b': ['non-comformity', 'conditioning']
   })
 
-  t.deepEqual(result, expected_result)
+  t.deepEqual(result, expectedResult)
 
   t.end()
 })
 
 test('can join on multiple keys', function(t) {
-  var expected_results = []
+  var expectedResults = []
     , data = []
     , result
 
@@ -110,37 +110,37 @@ test('can join on multiple keys', function(t) {
 
   result = join(data, ['a', 'b'])
 
-  expected_results.push({
+  expectedResults.push({
       'a': 'sunshine'
     , 'b': 'soldier'
     , 'count': [10, 1]
   })
 
-  expected_results.push({
+  expectedResults.push({
       'a': 'sunshine'
     , 'b': 'civilian'
     , 'count': [1, 11]
   })
 
-  expected_results.push({
+  expectedResults.push({
       'a': 'chaos'
     , 'b': 'legionaire'
     , 'count': [10, 5]
   })
 
-  expected_results.push({
+  expectedResults.push({
       'a': 'chaos'
     , 'b': 'officer'
     , 'count': [2, 4]
   })
 
-  t.deepEqual(result, expected_results)
+  t.deepEqual(result, expectedResults)
 
   t.end()
 })
 
 test('fails correctly for non-present keys', function(t) {
-  var expected_result = []
+  var expectedResult = []
     , data = []
     , result
 
@@ -151,7 +151,7 @@ test('fails correctly for non-present keys', function(t) {
 
   result = join(data, ['a.b'])
 
-  t.deepEqual(result , expected_result)
+  t.deepEqual(result, expectedResult)
   t.end()
 })
 
