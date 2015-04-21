@@ -1,21 +1,25 @@
-module.exports = join_by_keys
+/**
+ * Copyright 2015 Urban Airship and Contributors
+ */
+module.exports = joinByKeys
 
-function join_by_keys(data, join_by) {
-  var getters = join_by.map(make_getter)
+function joinByKeys(data, joinBy) {
+  var getters = joinBy.map(makeGetter)
     , results = []
+    , keys
 
-  for(var i = 0, len = data.length; i < len; ++i) {
-    var keys = get_join_values(data[i])
+  for(var i = 0; i < data.length; ++i) {
+    keys = getJoinValues(data[i])
 
-    if(!keys.filter(not_undefined).length) {
+    if(!keys.filter(notUndefined).length) {
       continue
     }
 
-    for(var j = 0, jen = results.length; j < jen; ++j) {
-      var result_keys = get_join_values(results[j])
+    for(var j = 0; j < results.length; ++j) {
+      var resultKeys = getJoinValues(results[j])
 
-      if(array_equal(result_keys, keys)) {
-        results[j] = merge_objects(results[j], data[i])
+      if(arrayEqual(resultKeys, keys)) {
+        results[j] = mergeObjects(results[j], data[i])
 
         break
       }
@@ -23,35 +27,30 @@ function join_by_keys(data, join_by) {
 
     if(j === results.length) {
       // then we never found a matching result.
-      results.push(merge_objects({}, data[i]))
+      results.push(mergeObjects({}, data[i]))
     }
   }
 
   return results
 
-  function get_join_values(obj) {
+  function getJoinValues(obj) {
     var values = []
-      , len
-      , i
 
-    for(i = 0, len = getters.length; i < len; ++i) {
-      values.push(getters[i](obj))
+    for(var k = 0; k < getters.length; ++k) {
+      values.push(getters[k](obj))
     }
 
     return values
   }
 
-  function merge_objects(result, object) {
-    var value
-      , len
-      , i
+  function mergeObjects(result, object) {
+    var mergeKeys = Object.keys(object)
+      , key
 
-    var keys = Object.keys(object)
+    for(var k = 0; k < mergeKeys.length; ++k) {
+      key = mergeKeys[k]
 
-    for(i = 0, len = keys.length; i < len; ++i) {
-      var key = keys[i]
-
-      if(join_by.indexOf(key) > -1) {
+      if(joinBy.indexOf(key) > -1) {
         // the whole premise is that these are all the same.
         result[key] = object[key]
 
@@ -69,7 +68,7 @@ function join_by_keys(data, join_by) {
   }
 }
 
-function array_equal(a, b) {
+function arrayEqual(a, b) {
   if(!a.length || (a.length !== b.length)) {
     return false
   }
@@ -83,12 +82,12 @@ function array_equal(a, b) {
   return true
 }
 
-function make_getter(key) {
+function makeGetter(key) {
   return function(obj) {
     return obj[key]
   }
 }
 
-function not_undefined(point) {
+function notUndefined(point) {
   return typeof point !== 'undefined'
 }
