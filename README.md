@@ -54,7 +54,7 @@ The module exports a function:
 
 ```javascript
 
-function(data, keys) -> joined_data
+function(data, keys) -> joinedData
 ```
 
 ### Arguments
@@ -64,7 +64,7 @@ function(data, keys) -> joined_data
 
 ### Return value
 
-`joined_data` is an array of JavaScript objects: The join of the data on the
+`joinedData` is an array of JavaScript objects: The join of the data on the
 specified keys. It is computed as follows:
 
 - Find all the elements of `data` with the same value in each of the `keys`
