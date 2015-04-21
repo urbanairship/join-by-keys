@@ -1,0 +1,25 @@
+{
+  "name": "join-by-keys",
+  "version": "1.0.0",
+  "description": "Join an array of objects on a common key or keys.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "license": "APACHE-V2",
+  "dependencies": {},
+  "devDependencies": {
+    "tape": "^4.0.0"
+  },
+  "author": "Urban Airship",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:urbanairship/join-by-keys.git"
+  },
+  "keywords": [
+    "join",
+    "data",
+    "reduce",
+    "key"
+  ]
+}
