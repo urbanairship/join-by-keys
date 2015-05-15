@@ -2,6 +2,9 @@
 
 Join an array of objects on a common key or keys.
 
+[![Build Status](http://img.shields.io/travis/urbanairship/join-by-keys/master.svg?style=flat)](https://travis-ci.org/urbanairship/join-by-keys)
+[![npm install](http://img.shields.io/npm/dm/join-by-keys.svg?style=flat)](https://www.npmjs.org/package/join-by-keys)
+
 ## Example
 
 ```

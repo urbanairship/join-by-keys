@@ -6,7 +6,7 @@
   "scripts": {
     "test": "tape test/*.js"
   },
-  "license": "APACHE-V2",
+  "license": "Apache-2.0",
   "dependencies": {},
   "devDependencies": {
     "tape": "^4.0.0"
